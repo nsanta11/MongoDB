@@ -36,13 +36,14 @@ mongoose.connect(MONGODB_URI);
 app.get("/scrape", function(req, res) {
   console.log("route hit")
   // First, we grab the body of the html with request
-  axios.get("https://stocktwits.com/").then(function(response) {
+  axios.get("http://www.thetravelmagazine.net/blog").then(function(response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(response.data);
 
 
-    $('.LatestNewsEvents__articles___2ws_L').each(function(i, element) {
-      // console.log(element)
+    $('.td-module-thumb').each(function(i, element) {
+
+      //console.log(element)
 
       // Save an empty result object
       var result = {};
@@ -51,10 +52,15 @@ app.get("/scrape", function(req, res) {
       // result.title = $(this)
       //   .children("a")
       //   .text();
-      result.link = $(this)
-        .children("div")
-        .attr("title");
-        console.log(result);
+      //console.log("Hello!")
+      result.link = 
+      // THIS IS THE link IT IS WORKING 
+      $(this).children("a").attr("href");
+      // This is the tile it is working 
+      $(this).children("a").attr("title");
+      //THIS IS the image it is working 
+      $(this).children("a").children("img").attr("src");
+      console.log(result);
 
       // Create a new Article using the `result` object built from scraping
       db.article.create(result)

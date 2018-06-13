@@ -26,8 +26,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Use express.static to serve the public folder as a static directory
 app.use(express.static("public"));
 
-var MONGODB_URI = process.env.MONGODB_URI 
-// || "mongodb://localhost/mongoHeadlines";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI);
 
@@ -43,23 +42,26 @@ app.get("/scrape", function(req, res) {
     var $ = cheerio.load(response.data);
 
 
-    $('.td-module-thumb').each(function(i, element) {
+    // $('.td-module-thumb').each(function(i, element) {
+      $('.td_module_10').each(function(i, element) {
 
       //console.log(element)
 
       // Save an empty result object
       var result = {};
-
   
       result.link = 
-      // THIS IS THE link IT IS WORKING 
-      $(this).children("a").attr("href");
-      // This is the tile it is working 
+      // // THIS IS THE link IT IS WORKING 
+      $(this).children(".td-module-thumb").children("a").attr("href");
+      // // This is the tile it is working 
       result.title =
-      $(this).children("a").attr("title");
-      //THIS IS the image it is working 
+      $(this).children(".td-module-thumb").children("a").attr("title");
+      // //THIS IS the image it is working 
+      result.summary =
+      $(this).children(".item-details").children(".td-excerpt").text();
+
       result.image =
-      $(this).children("a").children("img").attr("src");
+      $(this).children(".td-module-thumb").children("a").children("img").attr("src");
       console.log(result);
 
       // Create a new Article using the `result` object built from scraping
@@ -74,10 +76,12 @@ app.get("/scrape", function(req, res) {
         });
     });
 
+  });
+
     // If we were able to successfully scrape and save an Article, send a message to the client
     res.send("Scrape Complete");
   });
-});
+
 
 // Route for getting all Articles from the db
 app.get("/articles", function(req, res) {

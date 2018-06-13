@@ -13,6 +13,13 @@ var articleSchema = new Schema({
       type: String,
       required: true
     },
+
+    // article summary
+    summary: {
+      type: String,
+      required: true
+    },
+
     //image link
     image: {
       type: String,

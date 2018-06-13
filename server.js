@@ -48,17 +48,15 @@ app.get("/scrape", function(req, res) {
       // Save an empty result object
       var result = {};
 
-      //Add the text and href of every link, and save them as properties of the result object
-      // result.title = $(this)
-      //   .children("a")
-      //   .text();
-      //console.log("Hello!")
+  
       result.link = 
       // THIS IS THE link IT IS WORKING 
       $(this).children("a").attr("href");
       // This is the tile it is working 
+      result.title =
       $(this).children("a").attr("title");
       //THIS IS the image it is working 
+      result.image =
       $(this).children("a").children("img").attr("src");
       console.log(result);
 

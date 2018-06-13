@@ -13,6 +13,11 @@ var articleSchema = new Schema({
       type: String,
       required: true
     },
+    //image link
+    image: {
+      type: String,
+      required: true
+    },
     // note: the object that stores the note id
     note: {
       type: Schema.Types.ObjectId,

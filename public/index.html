@@ -3,8 +3,21 @@
   <head>
     <meta charset="UTF-8">
     <title>Scraping With Mongoose</title>
+     <!-- Compiled and minified CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+
+     <!-- Compiled and minified JavaScript -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
     <style>
-      body { background-color: #F2F6D0 }
+      body { 
+          background-image: url("http://coolpcwallpapers.com/wp-content/uploads/2018/01/Travel-Grand-Canyon-Aerial-Wallpaper-1920x1200.jpg");
+          background-color: rgb(55, 64, 113)
+        }
+
+      h1 {
+        color: white;
+        text-shadow: 2px 2px 4px #000000;
+      }
       #wrapper {
         width: 960px;
         margin-left: auto;
@@ -21,6 +34,12 @@
         float: right;
         width: 30%;
       }
+      .collection-item {
+          margin-left: 5px;
+      }
+      /* body {
+          color: white;
+      } */
       textarea, input {
         display: block;
         width: 100%;
@@ -38,10 +57,16 @@
   </head>
   <body>
     <div id="wrapper">
-      <h1>Note Scraper</h1>
-      <h2><i>If you can do this...the homework should be no problem.</i></h2>
-      <div id="articles"></div>
-      <div id="notes"></div>
+      <h1>Wanderlust Note Scraper</h1>
+      <ul class="collection">
+            <li class="collection-item avatar">
+              <div id="articles"><br>
+              </div>
+              <div id="notes"></div>
+              <br></br>
+            </li>
+            <br>
+          </ul>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="app.js"></script>
